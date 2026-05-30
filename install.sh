@@ -1,7 +1,6 @@
 #!/bin/bash
 set -e
 
-
 echo "Checking for Clang installation..."
 
 if ! command -v clang &>/dev/null; then
@@ -86,7 +85,7 @@ cp "$EXT_FILE" "$OUTPUT_FILE" || { echo "Failed to copy extension file"; exit 1;
 PHP_INI=$(php --ini | awk -F': ' '/Loaded Configuration File/ {print $2}' | xargs)
 
 if [ -z "$PHP_INI" ]; then
-    echo "Error: Could not find php.ini file."
+    echo "Error : Could not find php.ini file"
     exit 1
 fi
 
@@ -100,6 +99,7 @@ fi
 
 
 echo "Verifying PHP extension load..."
+
 php -m | grep -i tgcrypto && echo "extension is loaded !" || echo "extension is not loaded. Check your configuration"
 
 php -r "print('Version : '.TGCRYPTO_VERSION.PHP_EOL);"
